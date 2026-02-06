@@ -26,11 +26,24 @@ const SECRET_KEY = "mysecretkey";
  */
 // ✅ CORS before routes
 app.use(cors({
-  origin: "http://localhost:3000", // change to 5173 if using Vite
+  origin: "http://localhost:3000", 
   credentials: true
 }));
 
 app.use(express.json());
+/* =====================
+   ROOT + HEALTH ROUTES
+===================== */
+app.get("/", (req, res) => {
+  res.send("🚀 Social Media Analytics API is running");
+});
+
+app.get("/api/health", (req, res) => {
+  res.json({
+    status: "ok",
+    message: "Backend running"
+  });
+});
 // Dummy user
 const user = {
   id: 1,
@@ -39,13 +52,7 @@ const user = {
 };
 
 
-// ✅ Health check route
-app.get("/api/health", (req, res) => {
-  res.json({
-    status: "ok",
-    message: "Backend running"
-  });
-});
+
 // LOGIN API
 app.post("/api/auth/login", (req, res) => {
   const { email, password } = req.body;
