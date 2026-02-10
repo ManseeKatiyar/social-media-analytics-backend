@@ -26,9 +26,16 @@ const SECRET_KEY = "mysecretkey";
  */
 // ✅ CORS before routes
 app.use(cors({
-  origin: "http://localhost:3000", 
-  credentials: true
-}));
+   origin: [
+      "http://localhost:5173",
+      "http://localhost:3000",
+      "https://social-media-analytics-frontend-three.vercel.app"
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use(express.json());
 /* =====================
